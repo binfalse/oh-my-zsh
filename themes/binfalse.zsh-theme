@@ -38,11 +38,11 @@ else
 fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-
+HOSTCOL=$FG[$(perl -le 'print hex("'$(xxd -pu <<< $(hostname))'") % 255')]
 
 # primary prompt
 PROMPT='$FG[237]-----------------------    %D{%F %I:%M:%S}    -----------------------%{$reset_color%}
-${RED}${EXITCODE}$my_orange$JOBS${PATHCOLOR}%~\
+${RED}${EXITCODE}$my_orange$JOBS$HOSTCOL%m ${PATHCOLOR}%~\
 $(svn_prompt_info)\
 $(hg_prompt_info)\
 $(git_prompt_info) \
